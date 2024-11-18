@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { fetchMovieDetails } from '../../../fetchers';
 import { MovieDetails } from '../../../types';
 
@@ -7,7 +8,7 @@ export default async function MovieDetailsPage({ params }: { params: { id: strin
   return (
     <div className="p-4">
       <h1 className="text-3xl font-bold">{movie.title}</h1>
-      <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+      <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
       <p>{movie.overview}</p>
       <div>
         <h2>Genres:</h2>
