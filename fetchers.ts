@@ -35,12 +35,12 @@ export async function searchQueries(query: string) {
     }
   }
   
-export async function fetchMovieTrailer(movieId: number) {
-  const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`);
-  if (!response.ok) throw new Error('Failed to fetch movie trailer');
-  const data = await response.json();
-  console.log(data)
-  // Find the official trailer or fallback to the first video
-  const trailer = data.results.find((video: any) => video.type === 'Trailer' && video.site === 'YouTube');
-  return trailer ? `https://www.youtube.com/embed/${trailer.key}` : null;
-}
+// export async function fetchMovieTrailer(movieId: number) {
+//   const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`);
+//   if (!response.ok) throw new Error('Failed to fetch movie trailer');
+//   const data = await response.json();
+//   console.log(data)
+//   // Find the official trailer or fallback to the first video
+//   const trailer = data.results.find((video: any) => video.type === 'Trailer' && video.site === 'YouTube');
+//   return trailer ? `https://www.youtube.com/embed/${trailer.key}` : null;
+// }
