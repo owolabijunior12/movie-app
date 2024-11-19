@@ -24,7 +24,7 @@ export default function MovieCard({ movie, onFavoriteToggle, isFavorite }: Props
         
       
       <div className="p-4">
-        <h3 className="text-xl text-inherit font-bold">{movie.title.slice(0,13)}</h3>
+        <h3 className="text-xl text-inherit font-bold">{movie.title}</h3>
         <p className="text-gray-400">Release Date: {movie.release_date}</p>
         <p className="text-yellow-400">Rating: {movie.vote_average}</p>
         {onFavoriteToggle && (
