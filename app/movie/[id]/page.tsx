@@ -8,7 +8,7 @@ export default async function MovieDetailsPage({ params }: { params: { id: strin
   return (
     <div className="p-4">
       <h1 className="text-3xl font-bold">{movie.title}</h1>
-        <Image width={100} height={100}  width={100} height={100} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+        <Image width={100} height={100}  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
       <p>{movie.overview}</p>
       <div>
         <h2>Genres:</h2>
