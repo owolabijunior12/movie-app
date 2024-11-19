@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Movie } from "../../types";
 import Image from "next/image";
-import { Navbar } from "../components/Navbar";
+
 
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useState<Movie[]>([]);
@@ -21,8 +21,7 @@ const FavoritesPage = () => {
   };
 
   return (
-    <div className="p-4">
-      <Navbar/>
+    <div className="p-4">      
       <h1 className="text-2xl font-bold mb-4">Favorite Movies</h1>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {favorites.map((movie) => (
