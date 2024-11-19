@@ -15,7 +15,7 @@ export default function MovieCard({ movie, onFavoriteToggle, isFavorite }: Props
     <div className='w-full gap-0 '>
       <div className="bg-gray-800  rounded-lg overflow-hidden shadow-md">
     
-        <Image
+         <Image width={100} height={100} 
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={movie.title}
         width={100}
