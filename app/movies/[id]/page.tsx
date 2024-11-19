@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";  // Use useParams in App Router
+import { useParams } from "next/navigation"; // Use `useParams` for dynamic routing
 import { fetchMovieDetails } from "../../../lib/api";
-import { MovieDetails } from "../../../types";
 import Image from "next/image";
 import {
   Card,
@@ -15,17 +14,17 @@ import {
 } from "@material-tailwind/react";
 
 const MovieDetailsPage = () => {
-  const { id } = useParams();  // Get the dynamic id from the route params
-  const [movie, setMovie] = useState<MovieDetails | null>(null);
+  const { id } = useParams(); // Get the dynamic route parameter
+  const [movie, setMovie] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!id) return;  // Exit if the id is not available
+    if (!id) return;
 
     const loadMovieDetails = async () => {
       setLoading(true);
       try {
-        const data = await fetchMovieDetails(id as string);  // Fetch movie details using id
+        const data = await fetchMovieDetails(id); // Assume this function fetches movie details
         setMovie(data);
       } catch (error) {
         console.error("Failed to fetch movie details:", error);
@@ -35,7 +34,7 @@ const MovieDetailsPage = () => {
     };
 
     loadMovieDetails();
-  }, [id]);  // Effect runs whenever `id` changes
+  }, [id]);
 
   if (loading) {
     return <p className="text-center mt-4">Loading...</p>;
@@ -47,10 +46,11 @@ const MovieDetailsPage = () => {
 
   return (
     <div className="p-4 flex justify-center items-center">
-      <Card className="w-full p-3 max-w-3xl">
+      <Card className="w-full p-5 max-w-5xl">
+        {/* Movie Poster and Backdrop */}
         <CardHeader color="blue-gray" className="relative h-96">
           <Image
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path || movie.poster_path}`}
             alt={movie.title}
             layout="fill"
             objectFit="cover"
@@ -58,9 +58,15 @@ const MovieDetailsPage = () => {
           />
         </CardHeader>
         <CardBody>
-          <Typography variant="h4" color="blue-gray" className="mb-4">
+          {/* Title and Tagline */}
+          <Typography variant="h4" color="blue-gray" className="mb-2">
             {movie.title}
           </Typography>
+          <Typography className="text-sm text-gray-500 italic mb-4">
+            {movie.tagline}
+          </Typography>
+
+          {/* Key Details */}
           <Typography className="text-sm text-gray-500 mb-2">
             <strong>Release Date:</strong> {movie.release_date}
           </Typography>
@@ -68,17 +74,43 @@ const MovieDetailsPage = () => {
             <strong>Runtime:</strong> {movie.runtime} minutes
           </Typography>
           <Typography className="text-sm text-gray-500 mb-2">
+            <strong>Budget:</strong> ${movie.budget.toLocaleString()}
+          </Typography>
+          <Typography className="text-sm text-gray-500 mb-2">
+            <strong>Revenue:</strong> ${movie.revenue.toLocaleString()}
+          </Typography>
+          <Typography className="text-sm text-gray-500 mb-2">
             <strong>Popularity:</strong> {movie.popularity}
           </Typography>
-          <Typography className="text-sm text-yellow-500 mb-4">
-            <strong>Rating:</strong> ⭐ {movie.vote_average} / 10
+          <Typography className="text-sm text-gray-500 mb-2">
+            <strong>Vote Average:</strong> ⭐ {movie.vote_average} ({movie.vote_count} votes)
           </Typography>
+
+          {/* Genres */}
+          <Typography className="text-sm text-gray-500 mb-2">
+            <strong>Genres:</strong>{" "}
+            {movie.genres.map((genre: any) => genre.name).join(", ")}
+          </Typography>
+
+          {/* Overview */}
           <Typography className="text-sm text-gray-700 mb-4">
             <strong>Overview:</strong> {movie.overview}
           </Typography>
+
+          {/* Homepage */}
+          {movie.homepage && (
+            <Typography className="text-sm text-blue-500 mb-4">
+              <strong>Homepage:</strong>{" "}
+              <a href={movie.homepage} target="_blank" rel="noopener noreferrer">
+                {movie.homepage}
+              </a>
+            </Typography>
+          )}
+
+          {/* Production Companies */}
           <Typography className="text-sm text-gray-500">
-            <strong>Genres:</strong>{" "}
-            {movie.genres.map((genre) => genre.name).join(", ")}
+            <strong>Production Companies:</strong>{" "}
+            {movie.production_companies.map((company: any) => company.name).join(", ")}
           </Typography>
         </CardBody>
         <CardFooter className="pt-4 flex justify-between">

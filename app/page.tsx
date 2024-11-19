@@ -111,10 +111,7 @@ const HomePage = () => {
                   <CardFooter className="pt-1 flex justify-between items-center">
                     <Button size="sm" className="bg-blue-400">
                     <Link key={movie.title} href={`/movies/${movie.id}`}>Details</Link>                      
-                    </Button>
-                    <Button size="sm" className="bg-yellow-400">
-                      Add to Favourite                     
-                    </Button>
+                    </Button>                  
                   </CardFooter>
                 </Card>
           </>
