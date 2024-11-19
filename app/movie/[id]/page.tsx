@@ -2,12 +2,15 @@ import Image from 'next/image';
 import { fetchMovieDetails } from '@/fetchers';
 import { MovieDetails } from '@/types';
 import { Navbar } from '@/app/components/Navbar';
-
+ interface props {
+   id: string ;
+ }
+ interface idProps {
+  params: props;
+ }
 export default async function MovieDetailsPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+  params
+} :idProps) {
   const movie: MovieDetails = await fetchMovieDetails(params.id);
 
   return (
