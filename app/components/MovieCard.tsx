@@ -30,7 +30,7 @@ export default function MovieCard({ movie, onFavoriteToggle, isFavorite }: Props
             onClick={() => onFavoriteToggle(movie)}
             className={`mt-2 px-4 py-2 rounded ${isFavorite ? 'bg-red-500' : 'bg-blue-500'} text-white`}
           >
-            {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+            {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'} 
           </button>
         )}
       </div>

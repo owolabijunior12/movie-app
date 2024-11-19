@@ -6,11 +6,14 @@ interface Props {
 
 export default function SearchBar({ onSearch }: Props) {
   return (
-      <input
+    <div className="flex w-screen justify-center items-center">
+       <input
       type="text"
       placeholder="Search movies..."
       onChange={(e) => onSearch(e.target.value)}
-      className="w-full p-2 border border-gray-500 rounded-lg"
+      className="p-2 border w-[40%] border-gray-500 rounded-lg"
     />
+    </div>
+     
   );
 }
