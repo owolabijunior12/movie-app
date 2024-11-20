@@ -9,7 +9,7 @@ export async function fetchPopularMovies(page: number = 1) {
 }
 
 
-export async function fetchMovieDetails(movieId: string) {
+export async function fetchMovieDetails(movieId: any) {
   const response = await fetch(`${BASE_URL}/movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`);
   console.log(response);
   

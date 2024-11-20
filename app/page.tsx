@@ -4,16 +4,6 @@ import { fetchMovies } from "../lib/api";
 import { Movie } from "../types";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-} from "@material-tailwind/react";
-
-
 
 const HomePage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -55,68 +45,59 @@ const HomePage = () => {
   console.log(filteredMovies);
   return (
     <div className="p-4 ">
-     
-      <div className="gap-4 flex justify-center items-center  flex-wrap">
-      <div className="flex w-screen justify-center items-center">
-         <input
-        type="text"
-        placeholder="Search movies..."
-        className="w-[40%] p-2 border rounded mb-4"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      </div>
+      <div className="gap-4 flex justify-center items-center flex-wrap">
+        <div className="flex w-screen justify-center items-center">
+          <input
+            type="text"
+            placeholder="Search movies..."
+            className="w-[40%] p-2 border rounded mb-4"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
         {filteredMovies.map((movie) => (
-          <>
-                <Card className="mt-6 h-auto p-2 gap-3  w-80 cursor-pointer">
-                  <CardHeader color="blue-gray" className=" h-56">
-                    <Image
-                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                      alt={movie.title}
-                      width={100}
-                      height={100}
-                      className="rounded-t-lg w-full   object-cover"
-                    />
-                  </CardHeader>
-                  <CardBody className="flex  flex-col">
-                    <Typography variant="h6" color="blue-gray" className=" text-2xl font-semibold mb-2">
-                      {movie.title} 
-                    </Typography>
-                    <Typography className="text-sm text-gray-500">
-                      Release Date: {movie.release_date}
-                    </Typography>
-                    <Typography className="text-sm text-gray-500">
-                    Vote Count: {movie.vote_count} votes
-                    </Typography>
-                    <Typography className="text-sm text-gray-500">
-                      Popularity: {movie.popularity}                      
-                    </Typography>
-                    <Typography className="text-sm text-yellow-500">  
-                      {
-                        movie.vote_average >= 5                         
-                         ? "⭐⭐⭐⭐⭐"
-                          : movie.vote_average === 4
-                         ? "⭐⭐⭐⭐"
-                          : movie.vote_average === 3
-                         ? "⭐⭐⭐"
-                          : movie.vote_average === 2
-                         ? "⭐⭐"
-                          : movie.vote_average === 1
-                         ? "⭐"                          
-                         : "no rating"                          
-                      }                    
-                       {  movie.vote_average}
-                    </Typography>
-                  </CardBody>
-                  <CardFooter className="pt-1 flex justify-between items-center">
-                    <Button size="sm" className="bg-blue-400">
-                    <Link key={movie.title} href={`/movies/${movie.id}`}>Details</Link>                      
-                    </Button>                  
-                  </CardFooter>
-                </Card>
-          </>
-          // <Link key={movie.title} href={`/movies/${movie.id}`}>
-          // </Link>
+          <div key={movie.id} className="mt-6 h-auto p-2 gap-3 w-80 cursor-pointer bg-white shadow-lg rounded-lg">
+            {/* Movie Poster and Backdrop */}
+            <div className="relative h-56">
+              <Image
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+                width={100}
+                height={100}
+                className="rounded-t-lg w-full object-cover"
+              />
+            </div>
+            <div className="p-4">
+              {/* Title and Details */}
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">{movie.title}</h2>
+              <p className="text-sm text-gray-500">{movie.release_date}</p>
+              {/* <p className="text-sm text-gray-500">Vote Count: {movie.vote_count} votes</p> */}
+              {/* <p className="text-sm text-gray-500">Popularity: {movie.popularity}</p> */}
+              <p className="text-sm text-yellow-500">
+                {
+                  movie.vote_average >= 5
+                    ? "⭐⭐⭐⭐⭐"
+                    : movie.vote_average === 4
+                    ? "⭐⭐⭐⭐"
+                    : movie.vote_average === 3
+                    ? "⭐⭐⭐"
+                    : movie.vote_average === 2
+                    ? "⭐⭐"
+                    : movie.vote_average === 1
+                    ? "⭐"
+                    : "No Rating"
+                }{" "}
+                {movie.vote_average}
+              </p>
+            </div>
+            <div className="p-4 flex justify-between items-center">
+              <Link href={`/movies/${movie.id}`}>
+                <a className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded hover:bg-blue-600">
+                  Details
+                </a>
+              </Link>
+            </div>
+          </div>
         ))}
       </div>
       {loading && <p className="text-center mt-4">Loading...</p>}
