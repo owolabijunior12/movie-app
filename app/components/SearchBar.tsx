@@ -11,7 +11,7 @@ export default function SearchBar({ onSearch }: Props) {
       type="text"
       placeholder="Search movies..."
       onChange={(e) => onSearch(e.target.value)}
-      className="p-2 border w-[40%] border-gray-500 rounded-lg"
+      className="p-2 border w-[8 0%] border-gray-500 rounded-lg"
     />
     </div>
      
