@@ -1,7 +1,7 @@
 import { MovieDetails, MoviesResponse } from "@/types";
 import axios from "axios";
 
-const API_URL = process.env.NEXT_PUBLIC_TMDB_API_URL;
+const API_URL = 'https://api.themoviedb.org/3' 
 const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
 export const fetchMovies = async (page = 1): Promise<MoviesResponse> => {
