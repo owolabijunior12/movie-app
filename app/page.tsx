@@ -56,9 +56,9 @@ const HomePage = () => {
           />
         </div>
         {filteredMovies.map((movie) => (
-          <div key={movie.id} className="mt-6 h-auto p-2 gap-3 w-80 cursor-pointer bg-white shadow-lg rounded-lg">
+          <div key={movie.id} className="mt-6 h-auto p-2 gap-3 w-80 cursor-pointer bg-gray-200 shadow-lg rounded-lg">
             
-            <div className=" ">
+            <div className="">
               <Image
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
