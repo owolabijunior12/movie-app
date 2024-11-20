@@ -69,7 +69,7 @@ const HomePage = () => {
             </div>
             <div className="p-4">
               
-              <h2 className="text-2xl font-semibold text-gray-800 mb-2">{movie.title.slice(0,20)}...</h2>
+              <h2 className="text-xl font-semibold text-gray-800 space-x-0 mb-2">{movie.title.slice(0,20)}...</h2>
               <p className="text-sm text-gray-500">{movie.release_date}</p>
               
               
