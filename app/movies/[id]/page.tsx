@@ -41,13 +41,12 @@ const MovieDetailsPage = () => {
     <div className="p-4 flex justify-center items-center">
       <div className="w-full p-5 max-w-5xl bg-white shadow-md rounded-lg">
         {/* Movie Poster and Backdrop */}
-        <div className="relative h-96 mb-4 rounded-t-lg overflow-hidden">
+        <div className="relative h-[70vh] mb-4 rounded-t-lg overflow-hidden">
           <Image
             src={`https://image.tmdb.org/t/p/w500${ movie.poster_path}`}
             alt={movie.title}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-t-lg"
+            layout="fill"                       
+            className="rounded-t-lg w-full object-fill"
           />
         </div>
         <div className="p-4">
@@ -98,7 +97,7 @@ const MovieDetailsPage = () => {
 
           {/* Production Companies */}
           <p className="text-sm text-gray-500">
-            <strong>Production Companies:</strong>{" "}
+            {/* <strong>Production Companies:</strong>{" "} */}
             {/* {movie.production_companies.map((company) => company.name).join(", ")} */}
           </p>
         </div>
