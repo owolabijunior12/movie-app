@@ -57,8 +57,8 @@ const HomePage = () => {
         </div>
         {filteredMovies.map((movie) => (
           <div key={movie.id} className="mt-6 h-auto p-2 gap-3 w-80 cursor-pointer bg-white shadow-lg rounded-lg">
-            {/* Movie Poster and Backdrop */}
-            <div className="relative h-56">
+            
+            <div className=" ">
               <Image
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
@@ -68,11 +68,11 @@ const HomePage = () => {
               />
             </div>
             <div className="p-4">
-              {/* Title and Details */}
+              
               <h2 className="text-2xl font-semibold text-gray-800 mb-2">{movie.title}</h2>
               <p className="text-sm text-gray-500">{movie.release_date}</p>
-              {/* <p className="text-sm text-gray-500">Vote Count: {movie.vote_count} votes</p> */}
-              {/* <p className="text-sm text-gray-500">Popularity: {movie.popularity}</p> */}
+              
+              
               <p className="text-sm text-yellow-500">
                 {
                   movie.vote_average >= 5
@@ -91,10 +91,10 @@ const HomePage = () => {
               </p>
             </div>
             <div className="p-4 flex justify-between items-center">
-              <Link href={`/movies/${movie.id}`}>
-                <a className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded hover:bg-blue-600">
+              <Link href={`/movies/${movie.id}`} className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded hover:bg-blue-600">
+                
                   Details
-                </a>
+                
               </Link>
             </div>
           </div>
